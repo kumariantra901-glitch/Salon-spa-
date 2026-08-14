@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière Day Spa — Rest, Restored</title>
+<meta name="description" content="Lumière Day Spa is a full-service day spa offering massage, facials, body treatments and nails in an atmosphere of quiet luxury.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF4EF;
+    --cream-deep:#F3E7DE;
+    --rose:#C48A93;
+    --rose-deep:#A96570;
+    --gold:#BE9B5E;
+    --gold-soft:#E4D3AE;
+    --ink:#2B2320;
+    --ink-soft:#5B4F49;
+    --sage:#93A388;
+    --white:#FFFFFF;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    color:var(--ink);
+    letter-spacing:0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+    margin-bottom:14px;
+    display:inline-block;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  section{padding:110px 0;}
+  @media(max-width:768px){ section{padding:70px 0;} .wrap{padding:0 22px;} }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    background:rgba(251,244,239,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(43,35,32,0.08);
+    transition:padding 0.3s ease;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{font-family:'Cormorant Garamond', serif; font-size:1.5rem; letter-spacing:0.06em;}
+  .logo em{font-style:italic; color:var(--rose-deep);}
+  .nav-links{display:flex; gap:34px; align-items:center; list-style:none;}
+  .nav-links a{
+    font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-soft); position:relative; padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; bottom:0; left:0; width:0; height:1px;
+    background:var(--gold); transition:width 0.3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .btn{
+    display:inline-block; padding:13px 30px;
+    font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+    border:1px solid var(--ink); border-radius:var(--radius);
+    transition:all 0.3s ease; white-space:nowrap;
+  }
+  .btn-primary{background:var(--ink); color:var(--cream); border-color:var(--ink);}
+  .btn-primary:hover{background:var(--rose-deep); border-color:var(--rose-deep);}
+  .btn-outline{border-color:var(--ink); color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--cream);}
+  .btn-gold{border-color:var(--gold); color:var(--gold-soft); background:transparent;}
+  .btn-gold:hover{background:var(--gold); color:var(--ink);}
+  .menu-toggle{display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--ink);}
+  @media(max-width:920px){
+    .nav-links{
+      position:fixed; top:76px; right:-100%; height:calc(100vh - 76px);
+      width:min(320px, 80vw); background:var(--cream); flex-direction:column;
+      align-items:flex-start; padding:40px 30px; gap:26px; transition:right 0.35s ease;
+      box-shadow:-8px 0 30px rgba(0,0,0,0.08);
+    }
+    .nav-links.open{right:0;}
+    .nav .btn-primary{display:none;}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh; display:flex; align-items:center; position:relative;
+    padding-top:100px;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 15%, rgba(190,155,94,0.16), transparent 60%),
+      radial-gradient(ellipse 55% 55% at 10% 90%, rgba(196,138,147,0.20), transparent 60%),
+      var(--cream);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;
+    width:100%;
+  }
+  @media(max-width:920px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    line-height:1.05;
+    font-weight:500;
+  }
+  .hero h1 em{font-style:italic; color:var(--rose-deep);}
+  .hero p.lead{
+    max-width:440px; margin:26px 0 38px; font-size:1.05rem; color:var(--ink-soft);
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-visual{
+    position:relative; aspect-ratio:4/5; border-radius:var(--radius);
+    background:var(--ink);
+    overflow:hidden;
+    box-shadow:0 40px 80px rgba(43,35,32,0.25);
+  }
+  .hero-visual img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+  }
+  .hero-visual::before{
+    content:''; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(43,35,32,0.05) 0%, rgba(43,35,32,0.05) 45%, rgba(43,35,32,0.65) 100%);
+  }
+  .hero-visual::after{
+    content:''; position:absolute; width:70%; aspect-ratio:1; border-radius:50%; z-index:1;
+    right:-15%; bottom:-15%; background:radial-gradient(circle at 30% 30%, rgba(228,211,174,0.28), transparent 70%);
+    mix-blend-mode:soft-light;
+  }
+  .hero-visual-label{
+    position:absolute; bottom:28px; left:28px; color:var(--cream);
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.3rem;
+    z-index:2; text-shadow:0 2px 12px rgba(0,0,0,0.35);
+  }
+  .hero-stats{
+    display:flex; gap:0; margin-top:56px; border-top:1px solid rgba(43,35,32,0.12); padding-top:26px;
+    max-width:520px; flex-wrap:wrap;
+  }
+  .hero-stat{padding-right:36px; margin-right:36px; border-right:1px solid rgba(43,35,32,0.12);}
+  .hero-stat:last-child{border-right:none;}
+  .hero-stat .num{font-family:'Cormorant Garamond', serif; font-size:1.9rem; color:var(--rose-deep);}
+  .hero-stat .label{font-size:0.74rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft);}
+
+  /* ---------- WHY STRIP ---------- */
+  .why{background:var(--white); border-top:1px solid rgba(43,35,32,0.08); border-bottom:1px solid rgba(43,35,32,0.08);}
+  .why .wrap{padding-top:56px; padding-bottom:56px;}
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:40px;}
+  @media(max-width:820px){ .why-grid{grid-template-columns:repeat(2,1fr);} }
+  .why-item{text-align:left;}
+  .why-item .mark{font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.6rem; color:var(--gold); margin-bottom:8px; display:block;}
+  .why-item h3{font-size:1.05rem; font-weight:500; margin-bottom:6px;}
+  .why-item p{font-size:0.88rem; color:var(--ink-soft);}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{max-width:640px; margin-bottom:60px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .section-head h2{font-size:clamp(2rem, 4vw, 2.9rem); font-weight:500;}
+  .section-head p{color:var(--ink-soft); margin-top:16px; font-size:1rem;}
+
+  /* ---------- MENU (signature element) ---------- */
+  .menu-section{background:var(--ink); color:var(--cream);}
+  .menu-section .eyebrow{color:var(--gold-soft);}
+  .menu-section .section-head h2{color:var(--cream);}
+  .menu-section .section-head p{color:rgba(251,244,239,0.65);}
+  .menu-tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:50px;}
+  .menu-tab{
+    padding:10px 22px; border:1px solid rgba(251,244,239,0.25); border-radius:20px;
+    font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; cursor:pointer;
+    background:transparent; color:rgba(251,244,239,0.75); transition:all 0.25s ease;
+  }
+  .menu-tab.active, .menu-tab:hover{background:var(--gold); border-color:var(--gold); color:var(--ink);}
+  .menu-cols{display:grid; grid-template-columns:1fr 1fr; gap:0 70px;}
+  @media(max-width:820px){ .menu-cols{grid-template-columns:1fr;} }
+  .menu-category{display:none; margin-bottom:10px;}
+  .menu-category.active{display:block;}
+  .menu-category-title{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.5rem;
+    color:var(--gold-soft); margin-bottom:22px; grid-column:1/-1;
+  }
+  .menu-line{
+    display:flex; align-items:baseline; gap:10px; margin-bottom:26px;
+  }
+  .menu-line .name{font-size:1.02rem; white-space:nowrap;}
+  .menu-line .name .duration{display:block; font-size:0.76rem; color:rgba(251,244,239,0.5); font-family:'Jost',sans-serif; margin-top:3px;}
+  .menu-line .dots{flex:1; border-bottom:1px dotted rgba(251,244,239,0.28); position:relative; top:-5px;}
+  .menu-line .price{font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--gold-soft); white-space:nowrap;}
+
+  /* ---------- SERVICES GRID (about/philosophy area) ---------- */
+  .services{}
+  .service-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(43,35,32,0.1);}
+  @media(max-width:820px){ .service-cards{grid-template-columns:1fr;} }
+  .service-card{
+    background:var(--cream-deep); padding:44px 34px; transition:background 0.3s ease;
+  }
+  .service-card:hover{background:var(--white);}
+  .service-card .num{font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--rose-deep); font-size:1.1rem;}
+  .service-card h3{margin-top:16px; font-size:1.3rem; font-weight:500;}
+  .service-card p{margin-top:12px; font-size:0.9rem; color:var(--ink-soft);}
+
+  /* ---------- ABOUT / TEAM ---------- */
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;}
+  @media(max-width:920px){ .about-grid{grid-template-columns:1fr;} }
+  .about-visual{
+    aspect-ratio:3/4; border-radius:var(--radius); position:relative; overflow:hidden;
+    background:var(--cream-deep);
+    box-shadow:0 30px 60px rgba(43,35,32,0.18);
+  }
+  .about-visual img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+  }
+  .about-visual::before{
+    content:''; position:absolute; inset:14px; border:1px solid rgba(251,244,239,0.6); z-index:1; pointer-events:none;
+  }
+  .about-text p{color:var(--ink-soft); margin-bottom:18px; font-size:1.02rem;}
+  .about-text .signature{font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.3rem; margin-top:26px; color:var(--rose-deep);}
+
+  .team-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:28px; margin-top:70px;}
+  @media(max-width:820px){ .team-grid{grid-template-columns:repeat(2,1fr);} }
+  .team-card .photo{
+    aspect-ratio:3/4; border-radius:var(--radius); margin-bottom:16px;
+    background:var(--cream-deep); position:relative; overflow:hidden;
+    box-shadow:0 18px 34px rgba(43,35,32,0.14);
+  }
+  .team-card .photo img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top;
+    transition:transform 0.5s ease;
+  }
+  .team-card:hover .photo img{transform:scale(1.045);}
+  .team-card h3{font-size:1.15rem; font-weight:500;}
+  .team-card .role{font-size:0.8rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--gold); margin-top:4px;}
+  .team-card .spec{font-size:0.86rem; color:var(--ink-soft); margin-top:8px;}
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:160px; gap:12px;
+  }
+  @media(max-width:820px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
+  .gallery-grid div{border-radius:var(--radius); position:relative; overflow:hidden; background:var(--cream-deep);}
+  .gallery-grid img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+    transition:transform 0.5s ease;
+  }
+  .gallery-grid div:hover img{transform:scale(1.05);}
+  .g1{grid-column:span 2; grid-row:span 2;}
+  .g2{}
+  .g3{}
+  .g4{grid-row:span 2;}
+  .g5{grid-column:span 2;}
+  .g6{}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{background:var(--cream-deep);}
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+  @media(max-width:820px){ .testi-grid{grid-template-columns:1fr;} }
+  .testi-card{background:var(--white); padding:36px 32px; border-radius:var(--radius); position:relative;}
+  .testi-card .stars{color:var(--gold); letter-spacing:2px; margin-bottom:16px; font-size:0.9rem;}
+  .testi-card p{font-family:'Cormorant Garamond', serif; font-size:1.15rem; font-style:italic; line-height:1.5;}
+  .testi-card .who{margin-top:20px; font-size:0.8rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft);}
+
+  /* ---------- GIFT CARDS ---------- */
+  .gift{
+    background:linear-gradient(120deg, var(--rose-deep), var(--ink));
+    color:var(--cream); position:relative; overflow:hidden;
+  }
+  .gift::before{
+    content:''; position:absolute; width:500px; height:500px; border-radius:50%;
+    background:radial-gradient(circle, rgba(228,211,174,0.18), transparent 70%);
+    right:-150px; top:-150px;
+  }
+  .gift-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; position:relative;}
+  @media(max-width:820px){ .gift-grid{grid-template-columns:1fr;} }
+  .gift .eyebrow{color:var(--gold-soft);}
+  .gift h2{color:var(--cream);}
+  .gift p{color:rgba(251,244,239,0.7); margin:20px 0 30px; max-width:440px;}
+  .gift-card-visual{
+    aspect-ratio:16/10; border-radius:10px; padding:30px;
+    background:linear-gradient(135deg, var(--gold-soft), var(--gold) 60%, var(--rose) 130%);
+    display:flex; flex-direction:column; justify-content:space-between;
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  }
+  .gift-card-visual .brand{font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.4rem; color:var(--ink);}
+  .gift-card-visual .amount{font-family:'Cormorant Garamond', serif; font-size:2.2rem; color:var(--ink);}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:760px; margin:0 auto;}
+  .faq-item{border-bottom:1px solid rgba(43,35,32,0.12); padding:26px 0;}
+  .faq-item summary{
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;
+    font-family:'Cormorant Garamond', serif; font-size:1.2rem; font-weight:500;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:'+'; font-size:1.4rem; color:var(--gold); transition:transform 0.25s ease;}
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item p{color:var(--ink-soft); margin-top:14px; font-size:0.94rem; max-width:600px;}
+
+  /* ---------- CONTACT / BOOKING ---------- */
+  .contact{background:var(--ink); color:var(--cream);}
+  .contact .eyebrow{color:var(--gold-soft);}
+  .contact h2{color:var(--cream);}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
+  @media(max-width:920px){ .contact-grid{grid-template-columns:1fr;} }
+  .contact-info .row{display:flex; gap:16px; margin-bottom:26px; align-items:flex-start;}
+  .contact-info .row .l{font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); min-width:90px; padding-top:2px;}
+  .contact-info .row .v{color:rgba(251,244,239,0.85); font-size:0.98rem;}
+  form{display:flex; flex-direction:column; gap:18px;}
+  form label{font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:6px; display:block;}
+  form input, form select, form textarea{
+    width:100%; background:transparent; border:none; border-bottom:1px solid rgba(251,244,239,0.3);
+    color:var(--cream); font-family:'Jost',sans-serif; font-size:1rem; padding:10px 2px; font-weight:300;
+  }
+  form input::placeholder, form textarea::placeholder{color:rgba(251,244,239,0.35);}
+  form input:focus, form select:focus, form textarea:focus{outline:none; border-color:var(--gold);}
+  form select option{color:var(--ink);}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media(max-width:520px){ .form-row{grid-template-columns:1fr;} }
+  .contact form .btn{margin-top:10px; align-self:flex-start;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); border-top:1px solid rgba(251,244,239,0.12); padding:44px 0;}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-logo{font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--cream); font-size:1.3rem;}
+  .footer-links{display:flex; gap:28px; list-style:none; flex-wrap:wrap;}
+  .footer-links a{color:rgba(251,244,239,0.6); font-size:0.85rem;}
+  .footer-links a:hover{color:var(--gold-soft);}
+  .footer-social{display:flex; gap:16px;}
+  .footer-social a{color:rgba(251,244,239,0.6); font-size:0.85rem; border:1px solid rgba(251,244,239,0.2); border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center;}
+  .footer-social a:hover{color:var(--ink); background:var(--gold-soft); border-color:var(--gold-soft);}
+  .footer-bottom{text-align:center; margin-top:34px; font-size:0.78rem; color:rgba(251,244,239,0.35);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important; animation:none !important;}
+  }
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#" class="logo">Lumière <em>Spa</em></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#menu">Treatments</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#gift">Gift Cards</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#book" class="btn btn-outline">Book Now</a></li>
+    </ul>
+    <a href="#book" class="btn btn-primary" style="margin-left:20px;">Book Now</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Full-Service Day Spa · Est. 2014</span>
+      <h1>Slow down.<br><em>Be tended to.</em></h1>
+      <p class="lead">Massage, facials, body rituals and nails in a space built for quiet — ten treatment rooms, one philosophy: your rest is not optional.</p>
+      <div class="hero-ctas">
+        <a href="#book" class="btn btn-primary">Book an Appointment</a>
+        <a href="#menu" class="btn btn-outline">View Treatment Menu</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="num">12</span><div class="label">Years Open</div></div>
+        <div class="hero-stat"><span class="num">4.9</span><div class="label">Average Rating</div></div>
+        <div class="hero-stat"><span class="num">18</span><div class="label">Therapists &amp; Stylists</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1745327883290-1e9c6447b938?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="A softly lit private spa treatment room with a made-up massage bed, folded linens and warm ambient lighting" loading="eager" fetchpriority="high">
+      <span class="hero-visual-label">The Quiet Room, No. 4</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY STRIP -->
+<section class="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-item"><span class="mark">I.</span><h3>Licensed Therapists</h3><p>Every provider is state-licensed with 5+ years' experience.</p></div>
+      <div class="why-item"><span class="mark">II.</span><h3>Clean Formulations</h3><p>Botanical, cruelty-free product lines used across every room.</p></div>
+      <div class="why-item"><span class="mark">III.</span><h3>Ten Private Rooms</h3><p>No shared suites — every treatment happens behind a closed door.</p></div>
+      <div class="why-item"><span class="mark">IV.</span><h3>Easy Rescheduling</h3><p>Change your appointment up to 12 hours out, no fee.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENT MENU -->
+<section class="menu-section" id="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Menu</span>
+      <h2>Treatments, priced plainly.</h2>
+      <p>No packages to decode. Choose a category, choose a duration, we'll handle the rest.</p>
+    </div>
+
+    <div class="menu-tabs" role="tablist">
+      <button class="menu-tab active" data-cat="massage">Massage</button>
+      <button class="menu-tab" data-cat="facial">Facial &amp; Skin</button>
+      <button class="menu-tab" data-cat="body">Body Rituals</button>
+      <button class="menu-tab" data-cat="nails">Nails</button>
+    </div>
+
+    <div class="menu-cols">
+      <div class="menu-category active" data-cat="massage">
+        <div class="menu-line"><span class="name">Swedish Massage<span class="duration">50 / 80 min</span></span><span class="dots"></span><span class="price">$135 / $190</span></div>
+        <div class="menu-line"><span class="name">Deep Tissue<span class="duration">50 / 80 min</span></span><span class="dots"></span><span class="price">$150 / $205</span></div>
+        <div class="menu-line"><span class="name">Hot Stone Therapy<span class="duration">80 min</span></span><span class="dots"></span><span class="price">$215</span></div>
+        <div class="menu-line"><span class="name">Prenatal Massage<span class="duration">50 min</span></span><span class="dots"></span><span class="price">$140</span></div>
+        <div class="menu-line"><span class="name">Couples Massage<span class="duration">50 min, per couple</span></span><span class="dots"></span><span class="price">$290</span></div>
+      </div>
+      <div class="menu-category" data-cat="facial">
+        <div class="menu-line"><span class="name">Signature Facial<span class="duration">60 min</span></span><span class="dots"></span><span class="price">$155</span></div>
+        <div class="menu-line"><span class="name">HydraGlow Resurfacing<span class="duration">60 min</span></span><span class="dots"></span><span class="price">$210</span></div>
+        <div class="menu-line"><span class="name">LED Light Therapy<span class="duration">30 min, add-on</span></span><span class="dots"></span><span class="price">$60</span></div>
+        <div class="menu-line"><span class="name">Microdermabrasion<span class="duration">45 min</span></span><span class="dots"></span><span class="price">$165</span></div>
+        <div class="menu-line"><span class="name">Men's Facial<span class="duration">50 min</span></span><span class="dots"></span><span class="price">$140</span></div>
+      </div>
+      <div class="menu-category" data-cat="body">
+        <div class="menu-line"><span class="name">Salt Scrub &amp; Wrap<span class="duration">75 min</span></span><span class="dots"></span><span class="price">$185</span></div>
+        <div class="menu-line"><span class="name">Detox Mud Wrap<span class="duration">60 min</span></span><span class="dots"></span><span class="price">$175</span></div>
+        <div class="menu-line"><span class="name">Dry Brush &amp; Oil Ritual<span class="duration">45 min</span></span><span class="dots"></span><span class="price">$120</span></div>
+        <div class="menu-line"><span class="name">Infrared Sauna Session<span class="duration">30 min</span></span><span class="dots"></span><span class="price">$55</span></div>
+      </div>
+      <div class="menu-category" data-cat="nails">
+        <div class="menu-line"><span class="name">Classic Manicure<span class="duration">35 min</span></span><span class="dots"></span><span class="price">$50</span></div>
+        <div class="menu-line"><span class="name">Gel Manicure<span class="duration">45 min</span></span><span class="dots"></span><span class="price">$68</span></div>
+        <div class="menu-line"><span class="name">Spa Pedicure<span class="duration">50 min</span></span><span class="dots"></span><span class="price">$78</span></div>
+        <div class="menu-line"><span class="name">Mani + Pedi Combo<span class="duration">85 min</span></span><span class="dots"></span><span class="price">$115</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY / SERVICE CARDS -->
+<section class="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Approach</span>
+      <h2>Three ideas we don't compromise on.</h2>
+    </div>
+  </div>
+  <div class="service-cards">
+    <div class="service-card"><span class="num">01</span><h3>Unhurried Time</h3><p>Every booking includes a 10-minute buffer before and after — you'll never feel rushed in or out the door.</p></div>
+    <div class="service-card"><span class="num">02</span><h3>One Therapist, Every Visit</h3><p>We match you with a provider and keep you together, so they learn your preferences over time.</p></div>
+    <div class="service-card"><span class="num">03</span><h3>Nothing Under Pressure</h3><p>No upsells during treatment. Product recommendations only if you ask for them.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal">
+      <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="A therapist giving a client a calm, focused back massage in a private treatment room" loading="lazy">
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">Our Story</span>
+      <h2 style="font-size:2.4rem; margin-bottom:22px;">Built as the spa our founder couldn't find.</h2>
+      <p>Lumière opened in 2014 after our founder, a former physical therapist, grew frustrated with day spas that treated relaxation as an upsell. She built a practice around ten private rooms, licensed therapists only, and appointments that are never double-booked.</p>
+      <p>Twelve years later, that's still the whole idea. We haven't added a juice bar or a retail wall. We added more massage rooms instead.</p>
+      <p class="signature">— Founder, Lumière Day Spa</p>
+    </div>
+  </div>
+
+  <div class="wrap" id="team" style="margin-top:20px;">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Team</span>
+      <h2>Meet a few of our therapists.</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal"><div class="photo"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Portrait of Marguerite D., massage therapist at Lumière Day Spa" loading="lazy"></div><h3>Marguerite D.</h3><div class="role">Massage Therapist</div><p class="spec">Deep tissue, prenatal, 9 years' experience</p></div>
+      <div class="team-card reveal"><div class="photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Portrait of Priya K., esthetician at Lumière Day Spa" loading="lazy"></div><h3>Priya K.</h3><div class="role">Esthetician</div><p class="spec">Resurfacing facials, LED therapy</p></div>
+      <div class="team-card reveal"><div class="photo"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Portrait of Noor A., massage therapist at Lumière Day Spa" loading="lazy"></div><h3>Noor A.</h3><div class="role">Massage Therapist</div><p class="spec">Hot stone, Swedish, sports recovery</p></div>
+      <div class="team-card reveal"><div class="photo"><img src="https://images.unsplash.com/photo-1701096351544-7de3c7fa0272?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Portrait of Elena V., nail artist at Lumière Day Spa" loading="lazy"></div><h3>Elena V.</h3><div class="role">Nail Artist</div><p class="spec">Gel, structured manicures</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="padding-top:40px;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Inside Lumière</span>
+      <h2>A look at the space.</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g1"><img src="https://images.unsplash.com/photo-1636717970103-da4e0e875c95?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Wide view of a serene spa interior with soft bedding, a mirror and a potted plant" loading="lazy"></div>
+      <div class="g2"><img src="https://images.unsplash.com/photo-1620733723572-11c53f73a416?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="A lit pillar candle on a silver holder, part of a spa treatment room's styling" loading="lazy"></div>
+      <div class="g3"><img src="https://images.unsplash.com/photo-1589271243958-d61e12b61b97?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="A potted botanical plant on a natural wood surface, evoking calm and greenery" loading="lazy"></div>
+      <div class="g4"><img src="https://images.unsplash.com/photo-1712725213051-8d7d6a52edaf?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="A client relaxing during a spa treatment with a warm towel" loading="lazy"></div>
+      <div class="g5"><img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="A client receiving a gentle facial skincare treatment" loading="lazy"></div>
+      <div class="g6"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="A spa styling detail with a pump bottle, pink tulips and a folded grey towel" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Client Words</span>
+      <h2>What people say after their first visit.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p>"The 10-minute buffer between appointments is such a small thing that changes everything. I've never felt rushed."</p><div class="who">— Aditi R.</div></div>
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p>"I've had the same therapist for three years now. She remembers my shoulder before I say anything."</p><div class="who">— James P.</div></div>
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p>"Quiet, unfussy, and the rooms are genuinely private. Worth every rupee for a proper reset."</p><div class="who">— Fatima S.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFT CARDS -->
+<section class="gift" id="gift">
+  <div class="wrap gift-grid">
+    <div class="reveal">
+      <span class="eyebrow">Gift Cards</span>
+      <h2 style="font-size:2.4rem;">Give someone an afternoon of quiet.</h2>
+      <p>Digital gift cards, any amount, delivered instantly or scheduled for a specific date.</p>
+      <a href="#contact" class="btn btn-gold">Purchase a Gift Card</a>
+    </div>
+    <div class="gift-card-visual reveal">
+      <div class="brand">Lumière Spa</div>
+      <div class="amount">$150</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Before You Visit</span>
+      <h2>A few things people ask.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary>What should I do before my first visit?</summary>
+        <p>Arrive 15 minutes early to fill out a brief intake form and change. We'll ask about any injuries, allergies, or pressure preferences before your treatment begins.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's your cancellation policy?</summary>
+        <p>Reschedule or cancel up to 12 hours before your appointment with no fee. Cancellations within 12 hours are charged 50% of the service price.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you accept walk-ins?</summary>
+        <p>We accommodate walk-ins when a room is open, but booking ahead guarantees your preferred time and therapist.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What product lines do you use?</summary>
+        <p>We use botanical, cruelty-free lines across every treatment room, and can accommodate sensitive-skin requests — just let us know when booking.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / BOOKING -->
+<section class="contact" id="book" onsubmit="event.preventDefault(); document.getElementById('formNote').style.display='block';">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Book Your Visit</span>
+      <h2>Reserve a time.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="row"><span class="l">Address</span><span class="v">214 Willowmere Lane, Patna, Bihar 800001</span></div>
+        <div class="row"><span class="l">Phone</span><span class="v"><a href="tel:+916120000000">+91 612 000 0000</a></span></div>
+        <div class="row"><span class="l">Email</span><span class="v"><a href="mailto:hello@lumierespa.example">hello@lumierespa.example</a></span></div>
+        <div class="row"><span class="l">Hours</span><span class="v">Tue–Sun, 10am – 8pm · Closed Mondays</span></div>
+        <div class="row" id="contact" style="margin-top:10px;"><span class="l">Follow</span>
+          <span class="v" style="display:flex; gap:14px;">
+            <a href="#" style="text-decoration:underline;">Instagram</a>
+            <a href="#" style="text-decoration:underline;">Facebook</a>
+          </span>
+        </div>
+      </div>
+      <form id="bookingForm" class="reveal">
+        <div class="form-row">
+          <div><label for="fname">Name</label><input id="fname" type="text" placeholder="Your full name" required></div>
+          <div><label for="fphone">Phone</label><input id="fphone" type="tel" placeholder="Your phone number" required></div>
+        </div>
+        <div><label for="fservice">Treatment</label>
+          <select id="fservice">
+            <option>Massage</option>
+            <option>Facial &amp; Skin</option>
+            <option>Body Ritual</option>
+            <option>Nails</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div><label for="fdate">Preferred Date</label><input id="fdate" type="date"></div>
+          <div><label for="ftime">Preferred Time</label><input id="ftime" type="time"></div>
+        </div>
+        <div><label for="fnote">Notes</label><textarea id="fnote" rows="3" placeholder="Anything we should know?"></textarea></div>
+        <button type="submit" class="btn btn-primary">Request Appointment</button>
+        <p id="formNote" style="display:none; font-size:0.85rem; color:var(--gold-soft); margin-top:6px;">Thank you — we'll confirm your appointment by phone within 24 hours.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-logo">Lumière Spa</div>
+    <ul class="footer-links">
+      <li><a href="#menu">Treatments</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gift">Gift Cards</a></li>
+      <li><a href="#book">Book Now</a></li>
+    </ul>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">IG</a>
+      <a href="#" aria-label="Facebook">FB</a>
+    </div>
+  </div>
+  <p class="footer-bottom">© 2026 Lumière Day Spa. All rights reserved.</p>
+</footer>
+
+<script>
+  // mobile menu
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // menu tabs
+  const tabs = document.querySelectorAll('.menu-tab');
+  const cats = document.querySelectorAll('.menu-category');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      cats.forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector('.menu-category[data-cat="' + tab.dataset.cat + '"]').classList.add('active');
+    });
+  });
+
+  // booking form (no real submission — demo only)
+  document.getElementById('bookingForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('formNote').style.display = 'block';
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
